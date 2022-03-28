@@ -9,10 +9,13 @@ namespace CodingChallenge
 	{
 		private int FibonacciRecursion(int position)
 		{
-			if (position <= 0) return 1;
-			if (position == 1) return 1;
+			if (position <= 0)
+				return -1;
+				if (position == 1)
+					return 0;
+
 			else
-				return FibonacciRecursion(position - 2) + FibonacciRecursion(position - 1);
+				return FibonacciRecursion(position + 2) + FibonacciRecursion(position + 1);
 		}
 
 		[Fact]
@@ -23,14 +26,13 @@ namespace CodingChallenge
 			Assert.Equal(8, FibonacciRecursion(5));
 
 			// Your explanation: 
-			// The first two Fibonacci numbers are 1 and 1
+			// 
 			// 
 		}
 
 		public double Factorial(int number)
 		{
-			if (number <= 1) return 1;
-			return number * Factorial(number - 1);
+			return number;
 		}
 
 		[Fact]
@@ -46,47 +48,43 @@ namespace CodingChallenge
 			Assert.Equal(120, Factorial(5));
 
 			// Your explanation: 
-			// The formula for the factorial is n! = n * (n-1)!
+			// 
 			// 
 		}
 
 		private int FindWay(char[,] maze, int row, int col, int steps)
 		{
+			
+			maze[row, col] = char.Parse("X");
 			steps++;
 			
-			if (row + 1 > maze.GetLength(0) || col + 1 > maze.GetLength(1) || row < 0 || col < 0)
-            {
-				throw new ArgumentException("Out of maze");
-            }
-
-			if (maze[row, col] == 'G')
-			{
+			if (maze.GetLength(0) == row + 1 || maze.GetLength(1) == col + 1)
 				return steps;
-			}
 
-			maze[row, col] = 'X';
-
-			if (maze[row - 1, col] == '.' || maze[row - 1, col] == 'G')
-            {
+			if (maze[(row - 1), col] == '.')
 				return FindWay(maze, row - 1, col, steps);
-			}
 
-			if (maze[row, col + 1] == '.' || maze[row, col + 1] == 'G')
+			if (maze[row, (col + 1)] == '.')
 			{
-				return FindWay(maze, row, col + 1, steps);
+				col = (col + 1);
+				return FindWay(maze, row, col = (col + 1), steps);
 			}
 
-			if (maze[row + 1, col] == '.' || maze[row + 1, col] == 'G')
+			if (maze[(row + 1), col] == '.')
 			{
-				return FindWay(maze, row + 1, col, steps);
+				row = (row + 1);
+				FindWay(maze, row + 1, col, steps);
 			}
 
-			if (maze[row, col - 1] == '.' || maze[row, col -1 ] == 'G')
+			if (maze[row, (col - 1)] == '.')
 			{
-				return FindWay(maze, row, col - 1, steps);
+				col = (col - 1);
+				FindWay(maze, row, col - 1, steps);
 			}
 
-			throw new Exception($"No way  :(");
+			maze[row, col] = 'B';
+			return steps -= 1;
+
 		}
 
 		
@@ -116,8 +114,8 @@ namespace CodingChallenge
 
 			Assert.Equal(7, steps);
 
-			// Rule: Apply only changes to the method above that is called FindWay
-
+			// Rule: Apply only changes to the method above that is called Factorial
+			
 
 
 			// Your explanation: 

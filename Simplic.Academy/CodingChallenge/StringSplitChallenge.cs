@@ -14,13 +14,13 @@ namespace CodingChallenge
 
             var words = "Hello, this is  a  text !  !";
 
-            var wordList = words.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+            var wordList = words.Split(new char[] { ' ' });
 
             Assert.Equal(7, wordList.Length);
             Assert.DoesNotContain(" ", wordList);
 
             // Your explanation: 
-            // There were multiple spaces next to each other so empty entries were generated
+            // 
             // 
         }
     }
