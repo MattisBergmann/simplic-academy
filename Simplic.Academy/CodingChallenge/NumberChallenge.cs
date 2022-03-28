@@ -14,11 +14,11 @@ namespace CodingChallenge
 
             var i = 0;
 
-            Assert.Equal(1, i++);
             Assert.Equal(1, ++i);
+            Assert.Equal(1, i++);
 
             // Your explanation: 
-            // 
+            // Changed the order of increment
             // 
         }
     }

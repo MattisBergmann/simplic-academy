@@ -18,7 +18,7 @@ namespace CodingChallenge
         {
             var json = @"
                 {
-                    ""name"": ""Max""
+                    ""name"": ""Max"",
                     ""age"": 12
                 }
             ";
@@ -29,7 +29,7 @@ namespace CodingChallenge
             Assert.Equal(12, obj.Age);
 
             // Your explanation: 
-            // 
+            // There was missing a comma
             // 
         }
 
@@ -39,7 +39,7 @@ namespace CodingChallenge
             var json = @"
                 {
                     ""name"": ""Max"",
-                    ""age"": ""12years""
+                    ""age"": 12
                 }
             ";
 
@@ -49,7 +49,7 @@ namespace CodingChallenge
             Assert.Equal(12, obj.Age);
 
             // Your explanation: 
-            // 
+            // Numbers should be written as numbers
             // 
         }
 
@@ -59,7 +59,7 @@ namespace CodingChallenge
             var json = @"
                 {
                     ""name"": ""Max"",
-                    ""birthday"": ""2000-03-04Z19:30:45.00T""
+                    ""birthday"": ""2000-04-03T19:30:45.00Z""
                 }
             ";
 
@@ -69,8 +69,9 @@ namespace CodingChallenge
             Assert.Equal(new DateTime(2000, 4, 3, 19, 30, 45), obj.Birthday);
 
             // Your explanation: 
-            // 
-            // 
+            // Date was formatted wrong:
+            // Was: yyyy-dd-MMZhh:mm:ssT
+            // Should be: yyyy-MM-ddThh:mm:ssZ
         }
     }
 }
