@@ -138,6 +138,7 @@ ggg";
         {
             if (placements == null)
             {
+                placements = new int[forms.Length][,];
                 for (var i = 0; i < forms.Length; i++)
                     placements[i] = GetPlacements(forms[i], board);
             }
